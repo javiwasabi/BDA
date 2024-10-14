@@ -1,0 +1,31 @@
+services:
+  cassandra1:
+    image: cassandra:latest
+    container_name: nodo1
+    ports:
+      - "7001:9042"
+    networks:
+      - ayudantia
+    
+  cassandra2:
+    image: cassandra:latest
+    container_name: nodo2
+    ports:
+      - "7002:9042"
+    environment:
+      - CASSANDRA_SEEDS=nodo1
+    networks:
+      - ayudantia
+
+  cassandra3:
+    image: cassandra:latest
+    container_name: nodo3
+    ports:
+      - "7003:9042"
+    environment:
+      - CASSANDRA_SEEDS=nodo1
+    networks:
+      - ayudantia
+
+networks:
+ ayudantia:
